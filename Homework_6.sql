@@ -14,7 +14,7 @@ CREATE FUNCTION seconds_to_ddhhmmss(seconds INT)
 RETURNS VARCHAR(255)
 DETERMINISTIC
 BEGIN
-	DECLARE ddhhmmss VARCHAR(255);
+    DECLARE ddhhmmss VARCHAR(255);
     DECLARE days INT;
     DECLARE hours INT;
     DECLARE minutes INT;
@@ -28,8 +28,9 @@ BEGIN
     
     SET ddhhmmss = CONCAT(days, ' дней ', hours, ' часов ', minutes, ' минут ', seconds, ' секунд ');
 
-	RETURN ddhhmmss;
+    RETURN ddhhmmss;
 END; //
+	
 SELECT seconds_to_ddhhmmss(123456) AS 'секунды в ддччммсс';
 
 
@@ -44,17 +45,16 @@ DROP PROCEDURE IF EXISTS even_nums;
 DELIMITER //
 CREATE PROCEDURE even_nums(num1 INT, num2 INT)
 BEGIN
-	DECLARE n INT;
+    DECLARE n INT;
     DECLARE result VARCHAR(45) DEFAULT '';
     SET n = num1;
     
     REPEAT
-		IF NOT n % 2 THEN SET result = CONCAT(result, n, ',');
-		END IF;
-		SET n = n + 1;
-	UNTIL n > num2
+	IF NOT n % 2 THEN SET result = CONCAT(result, n, ',');
+	END IF;
+	SET n = n + 1;
+    UNTIL n > num2
     END REPEAT;
-    
     
     SELECT LEFT(result, LENGTH(result) -1) AS 'четные числа';
 END; //
